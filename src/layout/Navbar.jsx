@@ -29,7 +29,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from "../app/features/cartSlice";
 import { onOpenCartDrawerAction } from "../app/features/globalSlice";
 
-const Links = ["Dashboard", "Products", "Team"];
+const Links = ["Dashboard", "Products", "About"];
 
 const NavLink = ({ children }) => {
   return (

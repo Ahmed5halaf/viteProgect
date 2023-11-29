@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { axiosInstance } from '../../api/axios.config'
-import { createStandaloneToast } from '@chakra-ui/react'
 import CookieServies from '../../../services/CookieServies'
+import { createStandaloneToast } from '@chakra-ui/react'
 const { toast } = createStandaloneToast()
 const initialState = {
 
