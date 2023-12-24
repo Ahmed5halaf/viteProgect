@@ -51,6 +51,7 @@ const NavLink = ({ children }) => {
 
 export default function Navbar() {
   const { cartProducts } = useSelector(selectCart);
+  console.log(cartProducts);
   const { colorMode, toggleColorMode } = useColorMode();
   const token = CookieServies.get("jwt");
   const loginHandeler = () => {
@@ -83,6 +84,7 @@ export default function Navbar() {
                 {colorMode === "light" ? <BsMoon /> : <LiaSun />}
               </Button>
               <Button onClick={onOpen}>Cart({cartProducts.length})</Button>
+              
               {token ? (
                 <Menu>
                   <MenuButton

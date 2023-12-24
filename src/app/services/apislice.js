@@ -24,6 +24,31 @@ export const apiSlice = createApi({
                     ]
                     : [{ type: 'products', id: 'LIST' }],
         }),
+
+        updateDashboardProducts: builder.mutation({
+            query: ({ id, body }) => ({
+                url: `/api/products/${id}`,
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${CookieServies.get("jwt")}`
+                },
+                body
+            }),
+            async onQueryStarted({ id, ...patch }, { dispatch, queryFulfilled }) {
+                const patchReslt = dispatch(
+                    apiSlice.util.updataQueryData("getDashProducts", id, draft => {
+                        Object.assign(draft, patch)
+                    })
+                )
+                try{
+                    await queryFulfilled
+                }catch{
+                    patchReslt.undo() 
+                }
+            },
+            invalidatesTags: [{ type: 'products', id: 'LIST' }],
+
+        }),
         delteDashProducr: builder.mutation({
             query(id) {
                 return {
@@ -40,4 +65,4 @@ export const apiSlice = createApi({
     })
 })
 
-export const { useGetDashProductsQuery, useDelteDashProducrMutation } = apiSlice
+export const { useGetDashProductsQuery, useDelteDashProducrMutation ,useUpdateDashboardProductsMutation} = apiSlice

@@ -1,6 +1,24 @@
-import { Button, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay } from "@chakra-ui/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+} from "@chakra-ui/react";
 
-const CustomModal = ({isOpen,onClose,title,cancelText="Cancel",okText="Update",children}) => {
+const CustomModal = ({
+  isOpen,
+  onClose,
+  title,
+  cancelText = "Cancel",
+  okText = "Update",
+  children,
+  onOkClick,
+  isLoading,
+}) => {
   return (
     <div>
       <Modal
@@ -9,18 +27,21 @@ const CustomModal = ({isOpen,onClose,title,cancelText="Cancel",okText="Update",c
         isOpen={isOpen}
         motionPreset="slideInBottom"
       >
-        <ModalOverlay bg="blackAlpha.100" backdropFilter="blur(5px) hue-rotate(90deg)"/>
+        <ModalOverlay
+          bg="blackAlpha.100"
+          backdropFilter="blur(5px) hue-rotate(90deg)"
+        />
         <ModalContent>
           <ModalHeader>{title}</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            {children}
-          </ModalBody>
+          <ModalBody>{children}</ModalBody>
           <ModalFooter>
             <Button mr={3} onClick={onClose}>
               {cancelText}
             </Button>
-            <Button  colorScheme="blue">{okText}</Button>
+            <Button colorScheme="blue" onClick={onOkClick} isLoading={isLoading}>
+              {okText}
+            </Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

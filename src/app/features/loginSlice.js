@@ -26,8 +26,7 @@ export const userLogin = createAsyncThunk("login/userLogin", async (user, thunkA
 const loginSlice = createSlice({
     initialState,
     name: "login",
-    reducers: {},
-    extraReducers: {
+        extraReducers: {
         [userLogin.pending]: state => {
             state.loading = false
         },
